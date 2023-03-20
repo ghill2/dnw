@@ -7,7 +7,7 @@ Import the common passwords from the text files into the database
 `
 
 // An alternative library providing synchronous queries for sqlite database
-const db = require('better-sqlite3')('database.db');
+const db = require('better-sqlite3')('database2.db');
 
 let file;
 let readLines;
@@ -23,6 +23,7 @@ while ((line = readLines.next())) {
   processed += 1;
   if (processed == 1) continue;  // skip header
   let text = line.toString('utf-8');
+  console.log(text);
   let parts = text.split(",")
   db.prepare(
     `INSERT INTO users (name,email,password) VALUES (?, ?, ?);`)
@@ -39,7 +40,7 @@ while ((line = readLines.next())) {
   processed += 1;
   if (processed == 1) continue;  // skip header
   let text = line.toString('utf-8');
-  console.log(text);
+  // console.log(text);
   if (text == "" || text == "\n") continue;
   let parts = text.split(",");
 
